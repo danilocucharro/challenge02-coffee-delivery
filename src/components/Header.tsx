@@ -15,9 +15,9 @@ export function Header() {
             <span className="font-roboto">Porto Alegre, RS</span>
           </div>
 
-          <div className="p-2 bg-yellow-light rounded-md">
+          <button className="p-2 bg-yellow-light rounded-md">
             <ShoppingCart size={24} color="#C47F17" weight="fill" />
-          </div>
+          </button>
         </div>
       </div>
     </header>
