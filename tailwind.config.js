@@ -11,8 +11,22 @@ export default {
         roboto: ['Roboto', 'serif']
       },
       backgroundImage: {
-        'bg-banner': "url('/src/assets/background.png')" 
-      }
+        'banner': 'url("/src/assets/background.png")',
+        'american': 'url("/src/assets/american.svg")',
+        'arabian': 'url("/src/assets/arabian.svg")',
+        'capuccino': 'url("/src/assets/capuccino.svg")',
+        'cold': 'url("/src/assets/cold.svg")',
+        'creme': 'url("/src/assets/creme.svg")',
+        'cuban': 'url("/src/assets/cuban.svg")',
+        'hawaian': 'url("/src/assets/hawaian.svg")',
+        'hot-chocolate': 'url("/src/assets/hot-chocolate.svg")',
+        'irish': 'url("/src/assets/irish.svg")',
+        'latte': 'url("/src/assets/latte.svg")',
+        'macchiato': 'url("/src/assets/macchiato.svg")',
+        'mocaccino': 'url("/src/assets/mocaccino.svg")',
+        'traditional': 'url("/src/assets/traditional.svg")',
+        'with-milk': 'url("/src/assets/with-milk.svg")',
+      },
     },
     colors: {
       transparent: 'transparent',
