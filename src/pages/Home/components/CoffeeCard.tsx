@@ -19,7 +19,7 @@ export function CoffeeCard({
  }: CoffeeCardProps) {
   return(
     <div className={`flex flex-col items-center w-64 h-auto bg-base-card rounded-tl-md rounded-tr-[36px] rounded-br-md rounded-bl-[36px]`}>
-      <div className={`mt-[-1rem] ${imgName} w-[120px] h-[120px]`}/>
+      <svg className={`mt-[-1rem] ${imgName} w-[120px] h-[120px]`}/>
 
       <div className="flex text-yellow-dark gap-1 mt-3">
         {tag.map((tag) => (
@@ -45,7 +45,7 @@ export function CoffeeCard({
               <Minus />
             </button>
               <span className="text-base-title font-roboto text-base">{amount}</span>
-            <button className="text-purple">
+            <button className="text-purple text-lg font-roboto hover:text-purple-dark">
               <Plus />
             </button>
           </div>

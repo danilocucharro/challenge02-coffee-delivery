@@ -1,6 +1,5 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import logo from '../assets/logo.svg'
-import { Link } from 'react-router-dom'
 
 export function Header() {
   return(
@@ -16,9 +15,9 @@ export function Header() {
             <span className="font-roboto">Porto Alegre, RS</span>
           </div>
 
-          <Link to="checkout" className="p-2 bg-yellow-light rounded-md">
-            <ShoppingCart size={24} color="#C47F17" weight="fill" />
-          </Link>
+          <button className="p-2 bg-yellow-light rounded-md text-yellow-dark hover:bg-yellow hover:text-white duration-200">
+            <ShoppingCart size={24} weight="fill" />
+          </button>
         </div>
       </div>
     </header>
