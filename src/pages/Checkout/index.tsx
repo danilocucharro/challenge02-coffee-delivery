@@ -118,9 +118,9 @@ export function Checkout() {
               </div>
             </div>
 
-            <button className="w-full py-3 px-2 mt-3 bg-yellow items-center justify-center rounded-md hover:bg-yellow-dark duration-200">
-              <span className="font-roboto font-bold text-sm text-white">CONFIRMAR PEDIDO</span>
-            </button>
+              <button onClick={() => console.log("go to /checkout/order-confirmed")} className="w-full y-3 p-2 mt-3 bg-yellow items-center justify-center rounded-md hover:bg-yellow-dark duration-200">
+                <span className="font-roboto font-bold text-sm text-white">CONFIRMAR PEDIDO</span>
+              </button>
           </div>
         </div>
       </section>

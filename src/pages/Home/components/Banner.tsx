@@ -1,10 +1,10 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 
-import banner from '../../../assets/banner.png'
+import banner from '../../../assets/coffee-banner.svg'
 
 export function Banner() {
   return(
-    <div className="flex mt-28 px-40 items-center justify-between w-full h-[544px] bg-bg-banner">
+    <div className="flex mt-28 px-40 items-center justify-between w-full h-[544px] bg-banner">
       <div className="flex flex-col h-2/3 w-1/2 gap-4">
         <div>
           <h1 className="text-5xl text-nowrap font-baloo2 font-extrabold leading-tight">Encontre o café perfeito <br />para qualquer hora do dia</h1>
