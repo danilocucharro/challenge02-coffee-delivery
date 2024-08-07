@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { Checkout } from "./pages/Checkout"
 import { OrderConfirmed } from "./pages/OrderConfirmed"
+import { CartProvider } from "./contexts/CartContext"
+import { UserProvider } from "./contexts/UserContext"
 
 export function App() {
   const router = createBrowserRouter([
@@ -18,8 +20,12 @@ export function App() {
       element: <OrderConfirmed />
     }
   ])
-
+  
   return (
-    <RouterProvider router={router} />
+    <UserProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </UserProvider>
   )
 }

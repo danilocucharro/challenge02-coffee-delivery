@@ -1,6 +1,7 @@
 import { CoffeeCard } from "./CoffeeCard";
 
 export function CoffeeList() {
+
   return(
     <div className="mt-10 px-40 bg-background">
       <h2 className="font-extrabold text-3xl font-baloo2 mb-14">Nossos cafés</h2>

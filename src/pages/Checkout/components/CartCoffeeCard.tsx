@@ -4,14 +4,14 @@ interface CartCoffeeCardProps {
   name: string,
   imgName: string,
   price: number,
-  amount: number
+  amount: number,
 }
 
 export function CartCoffeeCard({ 
   name, 
   imgName, 
   price, 
-  amount 
+  amount,
 }: CartCoffeeCardProps) {
   return(
     <div className="flex gap-5 px-1 py-2 items-center">
