@@ -4,15 +4,15 @@ import banner from '../../../assets/coffee-banner.svg'
 
 export function Banner() {
   return(
-    <div className="flex mt-36 px-40 items-center justify-between w-full h-[544px] bg-banner max-mobile:px-0 max-mobile:flex-col max-mobile:h-auto">
+    <div className="flex mt-36 px-40 items-center justify-between w-full h-[544px] bg-banner max-mobile:px-5 max-mobile:flex-col max-mobile:h-auto">
       <div className="flex flex-col h-2/3 w-1/2 gap-4 max-mobile:w-full">
         <div>
-          <h1 className="text-5xl text-nowrap font-baloo2 font-extrabold leading-tight max-mobile:text-3xl max-mobile:text-center">Encontre o café perfeito <br />para qualquer hora do dia</h1>
+          <h1 className="text-5xl text-nowrap font-baloo2 font-extrabold leading-tight max-mobile:text-4xl max-mobile:text-pretty">Encontre o café perfeito <br />para qualquer hora do dia</h1>
         </div>
 
         <p className="font-roboto text-xl text-base-subtitle max-mobile:hidden">Com o Coffee Delivery você recebe seu café onde estiver, a <br />qualquer hora</p>
 
-        <div className="flex gap-12 mt-12 max-mobile:hidden ">
+        <div className="flex gap-12 mt-12 max-mobile:flex-col max-mobile:gap-5">
           <div className="flex flex-col gap-5">
             <div className="flex items-center gap-2">
               <div className="p-2 bg-yellow-dark rounded-full">
@@ -55,7 +55,7 @@ export function Banner() {
         </div>
       </div>
 
-      <div>
+      <div className="max-mobile:hidden">
         <img src={banner} alt="banner coffee delivery" />
       </div>
     </div>

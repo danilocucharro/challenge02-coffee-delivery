@@ -6,19 +6,19 @@ import { UserContext } from "../../contexts/UserContext";
 
 export function OrderConfirmed() {
   const { address } = useContext(UserContext)
-  
+
   return(
     <div className="bg-background h-lvh">
       <Header />
 
-      <section className="px-40 mt-44 max-mobile:px-10">
+      <section className="px-40 mt-44 max-mobile:px-5">
         <div>
           <h2 className="font-baloo2 font-extrabold text-[32px] text-yellow-dark">Uhu! Pedido Confirmado</h2>
           <p className="font-roboto text-xl text-base-subtitle">Agora é só aguardar que logo o café chegará até você</p>
         </div>
 
-        <div className="flex mt-8 justify-between">
-          <div className="bg-gradient-to-br w-[526px] p-[1px] from-yellow to-purple rounded-tl-md rounded-tr-[36px] rounded-br-md rounded-bl-[36px]">
+        <div className="flex mt-8 justify-between max-mobile:flex-col">
+          <div className="bg-gradient-to-br w-[526px] max-mobile:w-full p-[1px] from-yellow to-purple rounded-tl-md rounded-tr-[36px] rounded-br-md rounded-bl-[36px]">
             <div className="flex flex-col w-full h-full p-10 gap-8 bg-background rounded-tl-md rounded-tr-[36px] rounded-br-md rounded-bl-[36px]">
               <div className="flex gap-3 items-center">
                 <div className="flex w-10 h-10 bg-purple rounded-full justify-center items-center">
@@ -55,7 +55,7 @@ export function OrderConfirmed() {
             </div>
           </div>
 
-          <div className="max-mobile:hidden">
+          <div>
             <img src={imgSuccessOrder} alt="Pedido confirmado com sucesso!" />
           </div>
         </div>
