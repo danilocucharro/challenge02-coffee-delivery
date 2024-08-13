@@ -3,9 +3,9 @@ import { CoffeeCard } from "./CoffeeCard";
 export function CoffeeList() {
 
   return(
-    <div className="mt-10 px-40 bg-background">
-      <h2 className="font-extrabold text-3xl font-baloo2 mb-14">Nossos cafés</h2>
-        <div className="grid grid-cols-4 w-full h-auto gap-8">
+    <div className="mt-10 px-40 max-mobile:px-0  bg-background">
+      <h2 className="font-extrabold text-3xl font-baloo2 mb-14 max-mobile:text-center">Nossos cafés</h2>
+        <div className="grid grid-cols-4 w-full h-auto gap-8 max-mobile:flex flex-col items-center">
           <CoffeeCard 
             imgName="bg-traditional"
             tag={["TRADICIONAL"]}

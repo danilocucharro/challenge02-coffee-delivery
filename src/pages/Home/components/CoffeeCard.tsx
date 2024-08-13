@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../contexts/CartContext";
+import { toast } from "sonner";
 
 interface CoffeeCardProps {
   imgName: string,
@@ -31,15 +32,16 @@ export function CoffeeCard({
     setAmount(amount - 1)
   }
 
-  function handleAddCartItem () {
+  async function handleAddCartItem () {
     
-    setCartItems([...cartItems, {
+    await setCartItems([...cartItems, {
       coffeeName: name,
       coffeeImgName: imgName,
       coffeePrice: price,
       coffeeAmount: amount
     }])
-    console.log(cartItems)
+    
+    toast.success("Item adicionado ao seu carrinho!")
   }
 
   return(

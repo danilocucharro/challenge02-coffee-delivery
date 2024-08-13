@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useState } from "react"
 
 export interface AddressStateType {
-  cep: string,
+  cep: number,
   rua: string,
   numero: number,
-  complemento?: number,
+  complemento?: string,
   bairro: string,
   cidade: string,
   uf: string
@@ -12,7 +12,9 @@ export interface AddressStateType {
 
 interface UserContextType {
   address: AddressStateType,
-  setAddress: React.Dispatch<React.SetStateAction<AddressStateType>>
+  setAddress: React.Dispatch<React.SetStateAction<AddressStateType>>,
+  isAddressSubmited: boolean,
+  setIsAddressSubmited: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface UserProviderProps {
@@ -21,32 +23,40 @@ interface UserProviderProps {
 
 const defaultUserContextType: UserContextType = {
   address: {
-    cep: "",
+    cep: 0,
     rua: "",
     numero: 0,
-    complemento: 0,
+    complemento: "",
     bairro: "",
     cidade: "",
     uf: ""
   },
-  setAddress: () => {}
+  setAddress: () => {},
+  isAddressSubmited: false,
+  setIsAddressSubmited: () => {}
 }
 
 export const UserContext = createContext<UserContextType>(defaultUserContextType)
 
 export function UserProvider({ children }: UserProviderProps) {
   const [address, setAddress] = useState<AddressStateType>({
-    cep: "",
+    cep: 0,
     rua: "",
     numero: 0,
-    complemento: 0,
+    complemento: "",
     bairro: "",
     cidade: "",
     uf: ""
   })
+  const [isAddressSubmited, setIsAddressSubmited] = useState(false)
 
   return(
-    <UserContext.Provider value={{ address, setAddress }}>
+    <UserContext.Provider value={{ 
+      address, 
+      setAddress, 
+      isAddressSubmited, 
+      setIsAddressSubmited 
+    }}>
       {children}
     </UserContext.Provider>
   )

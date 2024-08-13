@@ -21,8 +21,8 @@ export function CartCoffeeCard({
 
       <div className="flex-1">
         <div className="flex justify-between">
-          <span className="font-roboto text-base text-base-subtitle leading-9">{name}</span>
-          <span className="font-roboto font-bold text-base-text leading-9">R$ {(price).toFixed(2).toString().replace(".", ",")}</span>
+          <span className="font-roboto text-base text-base-subtitle leading-9 max-mobile:text-xs">{name}</span>
+          <span className="font-roboto font-bold text-base-text leading-9 max-mobile:text-xs">R$ {(price).toFixed(2).toString().replace(".", ",")}</span>
         </div>
 
         <div className="flex gap-2">
@@ -36,9 +36,9 @@ export function CartCoffeeCard({
             </button>
           </div>
 
-          <button className="flex bg-base-button items-center px-2 py-1 gap-1 rounded-md hover:bg-base-hover duration-200">
+          <button className="flex bg-base-button items-center justify-center px-2 py-1 gap-1 rounded-md hover:bg-base-hover duration-200">
             <Trash color="#8047F8" size={18} />
-            <span className="text-base-text font-roboto text-xs">REMOVER</span>
+            <span className="text-base-text font-roboto text-[10px]">REMOVER</span>
           </button>
         </div>
       </div>

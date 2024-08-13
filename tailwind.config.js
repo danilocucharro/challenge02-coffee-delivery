@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'mobile': '450px',
+        'desktop': '1280px',
+      },
       fontFamily: {
         baloo2: ['"Baloo 2"', 'sans-serif'],
         roboto: ['Roboto', 'serif']
@@ -32,6 +36,8 @@ export default {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#FFFFFF',
+
+      'red-danger': '#EF4444',
   
       'yellow-dark': '#C47F17',
       'yellow': '#DBAC2C',

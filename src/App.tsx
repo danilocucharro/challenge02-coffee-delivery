@@ -9,11 +9,11 @@ export function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home/>
+      element: <Home />
     },
     {
       path: "/checkout",
-      element: <Checkout/>
+      element: <Checkout />
     },
     {
       path: "/checkout/order-confirmed",

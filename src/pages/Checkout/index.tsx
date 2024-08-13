@@ -8,16 +8,19 @@ import { FormAddress } from "./components/FormAddress";
 import { CartContext } from "../../contexts/CartContext";
 import { AddressStateType, UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import { toast, Toaster } from "sonner";
 
 export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<string>("")
-  const [isAddressSubmited, setIsAddressSubmited] = useState(false)
   const navigate = useNavigate()
 
   const { cartItems } = useContext(CartContext)
-  const { address, setAddress } = useContext(UserContext)
-
-  const isCepNull = address.cep === "" || address.cep === null
+  const { 
+    address,
+    setAddress,
+    isAddressSubmited,
+    setIsAddressSubmited
+  } = useContext(UserContext)
 
   const onSubmit: SubmitHandler<AddressStateType> = (data) => {
     setAddress({
@@ -39,15 +42,24 @@ export function Checkout() {
   }
 
   const handleEditAddress = () => {
+    setAddress({
+      bairro: "",
+      cep: 0,
+      cidade: "",
+      numero: 0,
+      rua: "",
+      uf: "",
+      complemento: ""
+    })
     setIsAddressSubmited(!isAddressSubmited)
   }
 
   const handleSubmitOrder = () => {
-    if(isCepNull === true){
-      alert("Antes de prosseguir, confirme o seu endereço!")
+    if(address.cep == 0 || address.cep == null){
+      toast.info("Antes de prosseguir, confirme o seu endereço!")
     }
     else if(paymentMethod === ""){
-      alert("Antes de prosseguir, escolha um método de pagamento!")
+      toast.warning("Antes de prosseguir, escolha um método de pagamento!")
     }
     else if(cartItems.length === 0){
       alert("Não consegui encontrar nada no seu carrinho :(")
@@ -59,11 +71,12 @@ export function Checkout() {
 
   return(
     <div className="bg-background h-lvh">
+      <Toaster richColors />
       <Header />
       
-      <section className="flex px-40 mt-28 gap-8">
+      <section className="flex px-40 mt-28 gap-8 max-mobile:px-5 max-mobile:flex-col">
       <div className="flex-1 mt-8">
-        <h2 className="text-lg font-baloo2 font-bold mb-3">Complete seu pedido</h2>
+        <h2 className="text-lg font-baloo2 font-bold mb-3 max-mobile:text-2xl">Complete seu pedido</h2>
         <div className="p-10 gap-8 bg-base-card rounded-md">
           <div className="flex w-full gap-2">
             <div>
@@ -71,14 +84,14 @@ export function Checkout() {
             </div>
             <div>
               <h3 className="text-base-subtitle font-roboto text-base">Endereço de Entrega</h3>
-              {isCepNull === true
+              {isAddressSubmited != true
                 ? <p className="text-sm font-roboto text-base-text">Informe o endereço onde deseja receber seu pedido</p>
                 : null
               }
             </div>
           </div>
 
-          {isCepNull === true
+          {isAddressSubmited != true
           ? <FormAddress handleSubmitAddressForm={onSubmit} />
           : (
               <div>
@@ -111,7 +124,7 @@ export function Checkout() {
             </div>
           </div>
 
-          <div className="flex justify-between gap-3">
+          <div className="flex justify-between gap-3 max-mobile:flex-col">
             <PaymentButton 
               paymentMethodValue="credito"
               paymentType="CARTÃO DE CRÉDITO"
@@ -139,13 +152,13 @@ export function Checkout() {
         </div>
       </div>
 
-        <div className="w-[448px] mt-8">
-          <h2 className="text-lg font-baloo2 font-bold mb-3">Cafés selecionados</h2>
+        <div className="w-[448px] mt-8 max-mobile:w-full">
+          <h2 className="text-lg font-baloo2 font-bold mb-3 max-mobile:text-2xl">Cafés selecionados</h2>
           <div className="p-10 bg-base-card rounded-tl-md gap-6 rounded-tr-[44px] rounded-br-md rounded-bl-[44px]">
             {cartItems.length === 0 ? (
               <div className="flex flex-col text-center items-center justify-center">
                 <SmileyXEyes color="#574f4d" size={64} weight="fill" />
-                <h2 className="font-baloo2 font-bold text-lg text-base-text">Por enquanto o seu carrinho está <br /> vazio.</h2>
+                <h2 className="font-baloo2 font-bold text-lg text-base-text max-mobile:text-base">Por enquanto o seu carrinho está <br /> vazio.</h2>
               </div>
             ) : (
               <div>
