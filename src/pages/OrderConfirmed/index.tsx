@@ -27,8 +27,8 @@ export function OrderConfirmed() {
 
                 <div className="flex-1">
                   {address.complemento === ""
-                  ? <p className="font-roboto text-base-text">Entrega em <span className="font-bold">{address.rua}, {address.numero}</span> {address.bairro} - {address.cidade}, {address.uf.toUpperCase()}</p>
-                  : <p className="font-roboto text-base-text">Entrega em <span className="font-bold">{address.rua}, {address.numero}, {address.complemento}</span> {address.bairro} - {address.cidade}, {address.uf.toUpperCase()}</p> 
+                  ? <p className="font-roboto text-base-text">Entrega em <span className="font-bold">{address.rua} {address.numero},</span> {address.bairro} - {address.cidade}, {address.uf.toUpperCase()}</p>
+                  : <p className="font-roboto text-base-text">Entrega em <span className="font-bold">{address.rua} {address.numero}, {address.complemento},</span> {address.bairro} - {address.cidade}, {address.uf.toUpperCase()}</p> 
                   }
                 </div>
               </div>

@@ -26,7 +26,7 @@ export function Header() {
           </div>
 
             <div className="flex w-[60px]">
-            <Link to="/checkout" className="flex items-center justify-center p-2 bg-yellow-light rounded-md text-yellow-dark hover:bg-yellow hover:text-white duration-200">
+            <Link to="/checkout" className="flex items-center justify-center p-2 bg-yellow-light rounded-md text-yellow-dark hover:bg-yellow hover:text-white duration-500">
               <ShoppingCart size={24} weight="fill" />
             </Link>
             {cartItems.length > 0 &&

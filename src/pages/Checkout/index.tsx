@@ -9,10 +9,23 @@ import { CartContext } from "../../contexts/CartContext";
 import { AddressStateType, UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "sonner";
+import { api } from "../../services/api";
+import { useForm } from "react-hook-form";
+
+interface CepProps {
+  cep: number
+}
 
 export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<string>("")
+  const [cep, setCep] = useState<number>(0)
   const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<CepProps>()
 
   const { cartItems } = useContext(CartContext)
   const { 
@@ -22,19 +35,32 @@ export function Checkout() {
     setIsAddressSubmited
   } = useContext(UserContext)
 
-  const onSubmit: SubmitHandler<AddressStateType> = (data) => {
-    setAddress({
-      cep: data.cep,
-      rua: data.rua,
-      numero: data.numero,
-      complemento: data.complemento,
-      bairro: data.bairro,
-      cidade: data.cidade,
-      uf: data.uf
-    })
+  const handleSubmitCep = async (data: CepProps) => {
+    setCep(data.cep)
+    const cepData = await api.get(`${data.cep}/json/`)
+    const cepDataResponse = cepData.data
 
-    setIsAddressSubmited(!isAddressSubmited)
-    console.log(isAddressSubmited)
+    setAddress({ 
+      rua: cepDataResponse.logradouro,
+      cidade: cepDataResponse.localidade,
+      bairro: cepDataResponse.bairro,
+      uf: cepDataResponse.uf
+     })
+  }
+
+  const onSubmit: SubmitHandler<AddressStateType> = async (data) => {
+    if(cep === 0){
+      toast.info("Antes de prosseguir, confirme o seu endereço!", {
+        duration: 2000
+      })
+    } else {
+      setAddress(addressData => ({
+        ...addressData,
+        numero: data.numero,
+        complemento: data.complemento
+      }))
+      setIsAddressSubmited(!isAddressSubmited)
+    }
   }
 
   const handleSetPaymentMethod = (paymentType: string) => {
@@ -44,7 +70,6 @@ export function Checkout() {
   const handleEditAddress = () => {
     setAddress({
       bairro: "",
-      cep: 0,
       cidade: "",
       numero: 0,
       rua: "",
@@ -55,7 +80,7 @@ export function Checkout() {
   }
 
   const handleSubmitOrder = () => {
-    if(address.cep == 0 || address.cep == null){
+    if(address.rua === "" || address.rua === undefined){
       toast.info("Antes de prosseguir, confirme o seu endereço!")
     }
     else if(paymentMethod === ""){
@@ -92,18 +117,47 @@ export function Checkout() {
           </div>
 
           {isAddressSubmited != true
-          ? <FormAddress handleSubmitAddressForm={onSubmit} />
+          ? (
+            <div className="mt-8">
+              <form onSubmit={handleSubmit(handleSubmitCep)}>
+                <div className="flex">
+                  <input 
+                    className="p-3 w-[200px] font-roboto text-sm text-base-title bg-base-card rounded-tl-[4px] rounded-bl-[4px] border border-base-button focus:border-yellow-dark" 
+                    placeholder="CEP"
+                    type="number"
+                    {...register("cep", { required: true, min: 0, minLength: 8, maxLength: 8 })}
+                  />
+                  <button 
+                    type="submit"
+                    className="p-2 bg-yellow-dark font-roboto font-bold text-sm text-white rounded-tr-[4px] rounded-br-[4px] cursor-pointer hover:bg-yellow duration-500"
+                  >
+                    <MapPinLine size={20} weight="duotone" />
+                  </button>
+                </div>  
+                  {errors.cep?.type === "required" && (
+                    <p className="text-roboto text-sm text-red-danger" role="alert">O CEP é obrigatório</p>
+                  )}
+                  {errors.cep?.type === "maxLength" && (
+                    <p className="text-roboto text-sm text-red-danger" role="alert">Esse CEP é muito grande</p>
+                  )}
+                  {errors.cep?.type === "minLength" && (
+                    <p className="text-roboto text-sm text-red-danger" role="alert">Esse CEP é muito pequeno</p>
+                  )}              
+              </form>
+
+              <FormAddress handleSubmitAddressForm={onSubmit} />
+            </div>
+          )
           : (
               <div>
                 <div className="mt-8 ml-5">
                   <ul className="list-disc">
-                    <li>CEP: {address.cep}</li>
                     <li>Rua: {address.rua}</li>
                     <li>Número: {address.numero}</li>
                     <li>Complemento: {address.complemento}</li>
                     <li>Bairro: {address.bairro}</li>
                     <li>Cidade: {address.cidade}</li>
-                    <li>UF: {address.uf.toUpperCase()}</li>
+                    <li>UF: {address.uf}</li>
                   </ul>
                 </div>
 
