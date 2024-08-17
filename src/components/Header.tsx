@@ -10,13 +10,13 @@ export function Header() {
   const { address } = useContext(UserContext)
 
   return(
-    <header className="w-full px-40 h-28 fixed top-0 bg-background max-mobile:py-5 max-mobile:px-5 max-mobile:h-auto">
-      <div className="h-full flex items-center justify-between max-mobile:flex-col max-mobile:gap-2">
+    <header className="w-full max-w-[1440px] px-40 h-28 fixed top-0 bg-background max-mobile:py-5 max-mobile:px-5 max-mobile:h-auto">
+      <div className="h-full flex items-center justify-between gap-2">
         <Link to="/">
           <img src={logo} alt="coffee delivery logo" />
         </Link>
 
-        <div className="flex max-mobile:flex-1 items-center max-mobile:justify-between gap-3">
+        <div className="flex items-center max-mobile:justify-between gap-3">
           <div className="flex gap-1 items-center p-2 bg-purple-light rounded-md text-purple-dark">
             <MapPin size={24} color="#8047F8" weight="fill" className="max-mobile:size-5"/>
             {!address.cidade 

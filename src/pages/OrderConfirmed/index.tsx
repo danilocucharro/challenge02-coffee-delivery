@@ -11,7 +11,7 @@ export function OrderConfirmed() {
     <div className="bg-background h-lvh">
       <Header />
 
-      <section className="px-40 mt-44 max-mobile:px-5">
+      <section className="px-40 mt-44 max-mobile:mt-24 max-mobile:px-5">
         <div>
           <h2 className="font-baloo2 font-extrabold text-[32px] text-yellow-dark">Uhu! Pedido Confirmado</h2>
           <p className="font-roboto text-xl text-base-subtitle">Agora é só aguardar que logo o café chegará até você</p>

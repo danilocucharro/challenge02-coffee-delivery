@@ -81,10 +81,14 @@ export function Checkout() {
 
   const handleSubmitOrder = () => {
     if(address.rua === "" || address.rua === undefined){
-      toast.info("Antes de prosseguir, confirme o seu endereço!")
+      toast.info("Antes de prosseguir, confirme o seu endereço!", {
+        duration: 1500
+      })
     }
     else if(paymentMethod === ""){
-      toast.warning("Antes de prosseguir, escolha um método de pagamento!")
+      toast.warning("Antes de prosseguir, escolha um método de pagamento!", {
+        duration: 1500
+      })
     }
     else if(cartItems.length === 0){
       alert("Não consegui encontrar nada no seu carrinho :(")

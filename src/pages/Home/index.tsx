@@ -5,7 +5,7 @@ import { CoffeeList } from "./components/CoffeeList";
 
 export function Home() {
   return(
-    <div className="bg-background">
+    <div className="bg-background flex flex-col items-center">
       <Toaster position="top-center" richColors duration={1500} />
       <Header />
       <Banner />
