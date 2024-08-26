@@ -10,8 +10,8 @@ export function Header() {
   const { address } = useContext(UserContext)
 
   return(
-    <header className="w-full max-w-[1440px] px-40 h-28 fixed top-0 bg-background max-mobile:py-5 max-mobile:px-5 max-mobile:h-auto">
-      <div className="h-full flex items-center justify-between gap-2">
+    <header className="w-full h-28 fixed top-0 bg-background max-mobile:py-5 max-mobile:px-5 max-mobile:h-auto">
+      <div className="h-full max-w-[1440px] m-auto px-40 max-mobile:px-0 flex items-center justify-between gap-2">
         <Link to="/">
           <img src={logo} alt="coffee delivery logo" />
         </Link>

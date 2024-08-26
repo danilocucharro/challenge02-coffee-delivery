@@ -27,19 +27,20 @@ export function CoffeeCard({
     setAmount(amount + 1)
   }
 
-  function handleReduceMoreCoffee() {
+  function handleDecreaseCoffee() {
     if(amount > 1)
     setAmount(amount - 1)
   }
 
   async function handleAddCartItem () {
-    
     await setCartItems([...cartItems, {
       coffeeName: name,
       coffeeImgName: imgName,
       coffeePrice: price,
       coffeeAmount: amount
     }])
+
+    //localStorage.setItem("cart", JSON.stringify(cartItems))
     
     toast.success("Item adicionado ao seu carrinho!")
   }
@@ -69,7 +70,7 @@ export function CoffeeCard({
 
           <div className="flex h-10 gap-2">
             <div className="flex bg-base-button w-[72px] p-2 justify-between items-center rounded-md">
-              <button onClick={handleReduceMoreCoffee} className="text-purple text-lg font-roboto hover:text-purple-dark">
+              <button onClick={handleDecreaseCoffee} className="text-purple text-lg font-roboto hover:text-purple-dark">
                 <Minus />
               </button>
                 <span className="text-base-title font-roboto text-base">{amount}</span>
@@ -78,7 +79,7 @@ export function CoffeeCard({
               </button>
             </div>
 
-            <button onClick={handleAddCartItem} className="h-full w-10 flex justify-center items-center bg-purple-dark rounded-md hover:bg-purple">
+            <button onClick={handleAddCartItem} className="h-full w-10 flex justify-center items-center bg-purple-dark rounded-md hover:bg-purple duration-150">
               <ShoppingCart size={24} weight="fill" color="#F3F2F2" />
             </button>
           </div>
