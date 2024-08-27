@@ -27,12 +27,20 @@ export function CartCoffeeCard({
   }
 
   const handleAddMoreCoffee = (coffeeAmount: number) => {
+    const cartItem = cartItems.find((item) => item.coffeeName === name)
+    
     setAmount(coffeeAmount + 1)
+
+    cartItem!.coffeeAmount = amount + 1
   }
 
   const handleDecreaseCoffee = (coffeeAmount: number) => {
+    const cartItem = cartItems.find((item) => item.coffeeName === name)
+
     if(amount > 1){
       setAmount(coffeeAmount - 1)
+
+      cartItem!.coffeeAmount = amount - 1
     } else {
       handleRemoveCartItem(name)
     }
@@ -47,7 +55,7 @@ export function CartCoffeeCard({
       <div className="flex-1">
         <div className="flex justify-between">
           <span className="font-roboto text-base text-base-subtitle leading-9 max-mobile:text-xs">{name}</span>
-          <span className="font-roboto font-bold text-base-text leading-9 max-mobile:text-xs">R$ {(price).toFixed(2).toString().replace(".", ",")}</span>
+          <span className="font-roboto font-bold text-base-text leading-9 max-mobile:text-xs">R$ {(price * amount).toFixed(2).toString().replace(".", ",")}</span>
         </div>
 
         <div className="flex gap-2">

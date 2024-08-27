@@ -33,16 +33,25 @@ export function CoffeeCard({
   }
 
   async function handleAddCartItem () {
-    await setCartItems([...cartItems, {
-      coffeeName: name,
-      coffeeImgName: imgName,
-      coffeePrice: price,
-      coffeeAmount: amount
-    }])
+    const cartItem = cartItems.findIndex((item) => item.coffeeName === name)
+
+    if(cartItem < 0){
+      await setCartItems([...cartItems, {
+        coffeeName: name,
+        coffeeImgName: imgName,
+        coffeePrice: price,
+        coffeeAmount: amount
+      }])
+
+      toast.success("Item adicionado ao seu carrinho!")
+    } else {
+      const itemCart = cartItems.find((item) => item.coffeeName === name)
+
+      itemCart!.coffeeAmount += amount
+    }
 
     //localStorage.setItem("cart", JSON.stringify(cartItems))
-    
-    toast.success("Item adicionado ao seu carrinho!")
+  
   }
 
   return(
