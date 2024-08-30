@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface CartStateType {
   coffeeName: string,
@@ -25,6 +25,19 @@ export const CartContext = createContext<CartContextType>(defaultValueCartContex
 
 export function CartProvider ({ children }: CartProviderProps) {
   const [cartItems, setCartItems] = useState<CartStateType[]>([])
+  
+  useEffect(() => {
+    const lastCartItems = localStorage.getItem("cart")
+    
+    if(lastCartItems){
+      setCartItems(JSON.parse(lastCartItems))
+    }
+  }, [])
+
+  useEffect(() => {
+    if(cartItems.length > 0) localStorage.setItem("cart", JSON.stringify(cartItems))
+      if(cartItems.length < 1) localStorage.removeItem("cart")
+  }, [cartItems])
 
   return(
     <CartContext.Provider value={{ cartItems, setCartItems }}>

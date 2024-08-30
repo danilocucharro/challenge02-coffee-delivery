@@ -32,6 +32,7 @@ export function CartCoffeeCard({
     setAmount(coffeeAmount + 1)
 
     cartItem!.coffeeAmount = amount + 1
+    localStorage.setItem("cart", JSON.stringify(cartItems))
   }
 
   const handleDecreaseCoffee = (coffeeAmount: number) => {
@@ -41,6 +42,7 @@ export function CartCoffeeCard({
       setAmount(coffeeAmount - 1)
 
       cartItem!.coffeeAmount = amount - 1
+      localStorage.setItem("cart", JSON.stringify(cartItems))
     } else {
       handleRemoveCartItem(name)
     }

@@ -32,26 +32,28 @@ export function CoffeeCard({
     setAmount(amount - 1)
   }
 
-  async function handleAddCartItem () {
+  function handleAddCartItem () {
     const cartItem = cartItems.findIndex((item) => item.coffeeName === name)
 
     if(cartItem < 0){
-      await setCartItems([...cartItems, {
+      const newCartItem = {
         coffeeName: name,
         coffeeImgName: imgName,
         coffeePrice: price,
         coffeeAmount: amount
-      }])
+      }
+
+      setCartItems([...cartItems, newCartItem])
 
       toast.success("Item adicionado ao seu carrinho!")
     } else {
       const itemCart = cartItems.find((item) => item.coffeeName === name)
 
       itemCart!.coffeeAmount += amount
-    }
+      localStorage.setItem("cart", JSON.stringify(cartItems))
 
-    //localStorage.setItem("cart", JSON.stringify(cartItems))
-  
+      toast.success("Item adicionado ao seu carrinho!")
+    }
   }
 
   return(
